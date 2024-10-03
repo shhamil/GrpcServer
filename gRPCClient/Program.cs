@@ -2,7 +2,7 @@
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Configuration;
 using System;
-using GrpcServer; // Проверьте, что это пространство имен правильно
+using GrpcServer;
 using System.Threading.Tasks;
 
 var configuration = new ConfigurationBuilder()
@@ -16,7 +16,6 @@ var client = new GreeterService.GreeterServiceClient(channel);
 
 Random random = new Random();
 
-// Отправляем пакеты
 for (int i = 0; i < clientConfig.TotalPackets; i++)
 {
     var packet = new Packet

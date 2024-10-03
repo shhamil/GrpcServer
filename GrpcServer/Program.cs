@@ -18,7 +18,6 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 var app = builder.Build();
 
-// Попробуйте считать нужный порт из конфигурации
 int grpcPort = builder.Configuration.GetValue<int>("GRPCServer:Port");
 
 var retries = 5;
