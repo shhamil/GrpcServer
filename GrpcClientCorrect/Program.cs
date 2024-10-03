@@ -47,7 +47,8 @@ for (int i = 0; i < clientConfig.TotalPackets; i++)
             Decimal2 = random.NextDouble(),
             Decimal3 = random.NextDouble(),
             Decimal4 = random.NextDouble(),
-            Timestamp = DateTime.UtcNow.ToString()
+            Timestamp = DateTime.UtcNow.ToString(),
+            RecordSeqNum = j
         });
     }
 

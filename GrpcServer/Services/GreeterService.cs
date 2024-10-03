@@ -22,7 +22,7 @@ namespace GrpcServer.Services
                 var dataEntry = new GrpcData
                 {
                     PacketSeqNum = request.PacketSeqNum,
-                    RecordSeqNum = await _dbContext.grpc_data.CountAsync() + 1, // ”никальный номер записи
+                    RecordSeqNum = record.RecordSeqNum,
                     PacketTimestamp = request.PacketTimestamp,
                     Decimal1 = record.Decimal1,
                     Decimal2 = record.Decimal2,
