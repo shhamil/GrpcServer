@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Настройка для чтения конфигурации из файлов и переменных окружения
+// чтение конфигурации из файла
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -18,6 +18,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 var app = builder.Build();
 
+// считываем порт из конфигурации
 int grpcPort = builder.Configuration.GetValue<int>("GRPCServer:Port");
 
 var retries = 5;
@@ -45,5 +46,5 @@ while (retries > 0)
 app.MapGrpcService<GreeterService>();
 app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
-// Используйте считанный порт при запуске приложения
+// устанавливаем считанный порт при запуске приложения
 await app.RunAsync($"http://0.0.0.0:{grpcPort}");

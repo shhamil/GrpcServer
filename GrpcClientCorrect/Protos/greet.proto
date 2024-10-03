@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "GrpcServer";
+
+package greet;
+
+message Data {
+    double Decimal1 = 1;
+    double Decimal2 = 2;
+    double Decimal3 = 3;
+    double Decimal4 = 4;
+    string Timestamp = 5;
+}
+
+message Packet {
+    string PacketTimestamp = 1;
+    int32 PacketSeqNum = 2;
+    int32 NRecords = 3;
+    repeated Data PacketData = 4;
+}
+
+
+service GreeterService {
+    rpc SendData(Packet) returns (google.protobuf.Empty);
+}

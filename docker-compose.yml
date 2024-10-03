@@ -27,6 +27,13 @@ services:
     networks:
       - mynetwork
 
+  grpc_client:
+    build:
+      context: .
+      dockerfile: ./GrpcClientCorrect/Dockerfile
+    depends_on:
+      - grpc_server
+
 volumes:
   pg_data:
 
