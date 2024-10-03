@@ -33,6 +33,8 @@ services:
       dockerfile: ./GrpcClientCorrect/Dockerfile
     depends_on:
       - grpc_server
+    networks:
+      - mynetwork
 
 volumes:
   pg_data:

@@ -12,9 +12,22 @@ var configuration = new ConfigurationBuilder()
 
 var clientConfig = configuration.GetSection("ClientConfig").Get<ClientConfig>();
 
-var channel = GrpcChannel.ForAddress($"http://{clientConfig.GrpcServerAddr}:{clientConfig.GrpcServerPort}");
-var client = new GreeterService.GreeterServiceClient(channel);
+var handler = new HttpClientHandler();
 
+var httpClient = new HttpClient(handler);
+
+var grpcAddress = clientConfig.GrpcServerAddr ?? "grpc_server";
+var grpcPort = clientConfig.GrpcServerPort > 0 ? clientConfig.GrpcServerPort : 8080;
+
+var channel = GrpcChannel.ForAddress($"http://{grpcAddress}:{grpcPort}", new GrpcChannelOptions
+{
+    HttpClient = httpClient
+});
+
+var client = new GreeterService.GreeterServiceClient(channel);
+// Добавляем задержку перед отправкой первого запроса
+Console.WriteLine("Ждем 10сек ----------------------------------------------");
+await Task.Delay(10000);
 Random random = new Random();
 
 for (int i = 0; i < clientConfig.TotalPackets; i++)
