@@ -1,4 +1,6 @@
-# GrpcServer <br />
-git clone https://github.com/shhamil/GrpcServer.git <br />
-cd GrpcServer <br />
-docker-compose up --build <br />
+# GrpcServer
+### Commands for local deployment
+- git clone https://github.com/shhamil/GrpcServer.git
+- cd polling_API
+- docker-compose build --no-cache
+- docker-compose up
